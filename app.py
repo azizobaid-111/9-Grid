@@ -384,7 +384,7 @@ name_txt = f" · {sel_name}" if sel_name != "All" else ""
 
 st.markdown(
     f'<div style="background:linear-gradient(135deg,{C_SIDEBAR} 0%,#2D2B55 100%);'
-    f'border-radius:16px;padding:18px 28px;margin:-20px 0 20px 0;'
+    f'border-radius:16px;padding:18px 28px;margin:-12px 0 20px 0;'
     f'display:flex;align-items:center;gap:18px">'
     f'<div>{logo_img}</div>'
     f'<div>'
