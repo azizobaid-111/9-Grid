@@ -85,10 +85,10 @@ st.markdown(f"""
 [data-testid="stSidebar"] hr {{ border-color:rgba(255,255,255,.1) !important; }}
 
 /* ── keep Streamlit header visible so sidebar can always be reopened ── */
-header[data-testid="stHeader"] {
+header[data-testid="stHeader"] {{
     background: transparent !important;
     height: 0px !important;
-}
+}}
 [data-testid="stSidebarCollapsedControl"] {{
     display: flex !important;
     visibility: visible !important;
