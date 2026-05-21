@@ -69,7 +69,7 @@ st.markdown(f"""
 <style>
 /* ── canvas ── */
 [data-testid="stAppViewContainer"] {{ background:{C_CANVAS}; }}
-[data-testid="stMainBlockContainer"] {{ padding-top:1rem; }}
+[data-testid="stMainBlockContainer"] {{ padding-top:0rem; }}
 
 /* ── sidebar ── */
 [data-testid="stSidebar"] {{ background:{C_SIDEBAR}; }}
@@ -384,7 +384,7 @@ name_txt = f" · {sel_name}" if sel_name != "All" else ""
 
 st.markdown(
     f'<div style="background:linear-gradient(135deg,{C_SIDEBAR} 0%,#2D2B55 100%);'
-    f'border-radius:16px;padding:22px 28px;margin-bottom:20px;'
+    f'border-radius:16px;padding:12px 28px 18px 28px;margin:-8px 0 20px 0;'
     f'display:flex;align-items:center;gap:18px">'
     f'<div>{logo_img}</div>'
     f'<div>'
