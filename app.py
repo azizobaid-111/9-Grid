@@ -88,7 +88,7 @@ st.markdown(f"""
 header[data-testid="stHeader"] {
     background: transparent !important;
     height: 0px !important;
-}}
+}
 [data-testid="stSidebarCollapsedControl"] {{
     display: flex !important;
     visibility: visible !important;
