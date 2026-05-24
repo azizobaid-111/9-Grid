@@ -108,7 +108,9 @@ st.markdown(f"""
 /* ── single purple tab underline (no duplicate, no red) ── */
 
 /* ── hide default header ── */
-header[data-testid="stHeader"] {{ display:none; }}
+header[data-testid="stHeader"] {{
+    background: transparent !important;
+}}
 
 /* ── KPI cards ── */
 .kpi-wrap {{ background:#fff; border-radius:14px; padding:16px 18px;
