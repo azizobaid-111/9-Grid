@@ -1039,7 +1039,8 @@ with tab3:
             marker_opacity=0.55,
             width=bar_group_width * 0.92,
             text=[f"{p:.0f}%" for p in pcts],
-            textposition="outside",
+            textposition="inside",
+            insidetextanchor="middle",
             textfont=dict(size=9, color=cfg["color"]),
             hovertemplate=(
                 f"<b>{yr}</b><br>"
@@ -1110,22 +1111,7 @@ with tab3:
         ))
 
     # ── Headcount annotations above bars (like reference image) ───────────────
-    for yr in years_to_plot:
-        sc  = score_data.get(yr, np.array([]))
-        if len(sc) == 0:
-            continue
-        offset = offsets.get(yr, 0) if bell_sel == "All Years" else 0
-        for zi, (_, lo, hi) in enumerate(PERF_ZONES):
-            hc_val = int(((sc >= lo) & (sc <= hi)).sum())
-            if hc_val > 0:
-                fig_bell.add_annotation(
-                    x=zone_centers[zi] + offset,
-                    y=hc_val,
-                    text=f"<b>{hc_val}</b>",
-                    showarrow=False,
-                    yshift=14,
-                    font=dict(size=9, color=BELL_CFG[yr]["color"]),
-                )
+    
 
     fig_bell.update_layout(
         height=420,
