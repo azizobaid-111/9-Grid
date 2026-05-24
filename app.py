@@ -258,12 +258,7 @@ div[role="radiogroup"] label:hover * {{
     color: #666EFF !important;
 }}
 
-div[role="radiogroup"] label:has(input[type="radio"]:checked) span,
-div[role="radiogroup"] label:has(input[type="radio"]:checked) p {{
-    color: #666EFF !important;
-    font-weight: 700 !important;
-    background: transparent !important;
-}}
+
 
 div[role="radiogroup"] [data-baseweb="radio"] > div {{
     border-color: #666EFF !important;
