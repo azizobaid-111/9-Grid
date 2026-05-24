@@ -268,7 +268,6 @@ div[role="radiogroup"] [data-baseweb="radio"] > div {{
 
 div[role="radiogroup"] [data-baseweb="radio"] input[type="radio"]:checked + div {{
     border-color: #666EFF !important;
-    
     box-shadow: 0 0 0 2px rgba(102,110,255,0.16) !important;
 }}
 
