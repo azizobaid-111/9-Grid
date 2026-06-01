@@ -1165,7 +1165,7 @@ with tab3:
         ),
         margin=dict(l=55, r=24, t=24, b=90),
         font=dict(family="Inter, Arial", size=11),
-       hoverlabel=dict(
+      hoverlabel=dict(
     bgcolor="#0D1321",
     font=dict(color="#fff", size=11, family="Inter, Arial"),
 ),
