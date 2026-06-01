@@ -1165,11 +1165,10 @@ with tab3:
         ),
         margin=dict(l=55, r=24, t=24, b=90),
         font=dict(family="Inter, Arial", size=11),
-        hoverlabel=dict(
-            bgcolor="#0D1321",
-            font=dict(color="#fff", size=11, family="Inter, Arial"),
-            bordercolor="#0D1321",
-        ),
+       hoverlabel=dict(
+    bgcolor="#0D1321",
+    font=dict(color="#fff", size=11, family="Inter, Arial"),
+),
     )
     st.plotly_chart(fig_bell, use_container_width=True)
 
