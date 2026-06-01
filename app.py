@@ -64,189 +64,227 @@ LOC_MAP = {
     "MMS Egypt": "Egypt",
 }
 
-# ── CSS ─────────────────────────────────────────────────────────────────────────────
+# ── CSS ───────────────────────────────────────────────────────────────────────
 st.markdown(f"""
 <style>
-/* MMS Talent 9-Grid  Premium Executive UI  v6
-   Brand: #666EFF purple  #30BFA6 green  #2B2B2B dark */
+/* ── canvas ── */
+[data-testid="stAppViewContainer"] {{ background:{C_CANVAS}; }}
+[data-testid="stMainBlockContainer"] {{ padding-top:1rem; }}
 
-[data-testid="stAppViewContainer"] {{
-    background:#F2F4F8;
-    font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif !important;
-}}
-[data-testid="stMainBlockContainer"] {{
-    padding-top:0.5rem !important;
-    padding-left:1.25rem !important;
-    padding-right:1.25rem !important;
-}}
-[data-testid="stSidebar"] {{
-    background:linear-gradient(180deg,#0B1120 0%,#111827 100%) !important;
-    border-right:1px solid rgba(102,110,255,0.12);
-}}
+/* ── sidebar ── */
+[data-testid="stSidebar"] {{ background:{C_SIDEBAR} !important; }}
 [data-testid="stSidebar"] > div:first-child {{
-    background:transparent !important;
+    background:{C_SIDEBAR} !important;
     padding-top:0 !important;
 }}
-[data-testid="stSidebar"] * {{ color:#B8C4D8 !important; }}
-[data-testid="stSidebar"] h1,[data-testid="stSidebar"] h2,[data-testid="stSidebar"] h3 {{
-    color:#EEF2FF !important;font-weight:700 !important;
+[data-testid="stSidebar"] * {{ color:#CBD5E1 !important; }}
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {{ color:#F1F5F9 !important; }}
+[data-testid="stSidebar"] .stSelectbox label,
+[data-testid="stSidebar"] .stMultiSelect label {{
+    color:#94A3B8 !important; font-size:11px !important;
+    text-transform:uppercase; letter-spacing:.05em;
 }}
-[data-testid="stSidebar"] .stSelectbox label,[data-testid="stSidebar"] .stMultiSelect label {{
-    color:#6B7A95 !important;font-size:10px !important;font-weight:700 !important;
-    text-transform:uppercase;letter-spacing:.09em;
-}}
-[data-testid="stSidebar"] hr {{ border:none !important;border-top:1px solid rgba(102,110,255,0.12) !important;margin:8px 0 !important; }}
+[data-testid="stSidebar"] hr {{ border-color:rgba(255,255,255,.1) !important; }}
 [data-testid="stSidebar"] .stSelectbox > div > div {{
-    background:rgba(255,255,255,0.04) !important;
-    border:1px solid rgba(102,110,255,0.30) !important;
-    border-radius:10px !important;transition:border-color .2s,box-shadow .2s;
+    border:1.5px solid rgba(102,110,255,0.45) !important;
+    border-radius:8px !important;
+    background:rgba(255,255,255,0.05) !important;
 }}
 [data-testid="stSidebar"] .stSelectbox > div > div:focus-within {{
     border-color:{C_PURPLE} !important;
-    box-shadow:0 0 0 3px rgba(102,110,255,0.18) !important;
+    box-shadow:0 0 0 2px rgba(102,110,255,0.25) !important;
 }}
+/* purple border for all selectboxes everywhere */
 .stSelectbox > div > div {{
-    border:1.5px solid rgba(102,110,255,0.25) !important;
-    border-radius:10px !important;transition:border-color .2s,box-shadow .2s;
+    border:1.5px solid rgba(102,110,255,0.35) !important;
+    border-radius:8px !important;
 }}
 .stSelectbox > div > div:focus-within {{
     border-color:{C_PURPLE} !important;
-    box-shadow:0 0 0 3px rgba(102,110,255,0.14) !important;
+    box-shadow:0 0 0 2px rgba(102,110,255,0.20) !important;
 }}
-header[data-testid="stHeader"] {{ background:transparent !important; }}
-.stTabs [data-baseweb="tab-list"] {{
-    gap:0;border-bottom:1.5px solid #E4E6EF;
-    background:transparent;padding:0 4px;
+/* ── single purple tab underline (no duplicate, no red) ── */
+
+/* ── hide default header ── */
+header[data-testid="stHeader"] {{
+    background: transparent !important;
 }}
-.stTabs [data-baseweb="tab-list"] button {{
-    border:none !important;border-bottom:3px solid transparent !important;
-    background:transparent !important;box-shadow:none !important;
-    padding:10px 20px 11px !important;margin-bottom:-1.5px;
-    font-size:13px !important;font-weight:500 !important;
-    color:#7A8499 !important;letter-spacing:.01em;transition:color .18s;
-}}
-.stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {{
-    border-bottom:3px solid {C_PURPLE} !important;
-    color:{C_PURPLE} !important;font-weight:700 !important;background:transparent !important;
-}}
-.stTabs [data-baseweb="tab-list"] button[aria-selected="true"] p,
-.stTabs [data-baseweb="tab-list"] button[aria-selected="true"] span {{
-    color:{C_PURPLE} !important;font-weight:700 !important;
-}}
-.stTabs [data-baseweb="tab-list"] button:not([aria-selected="true"]) p,
-.stTabs [data-baseweb="tab-list"] button:not([aria-selected="true"]) span {{ color:#7A8499 !important; }}
-[data-baseweb="tab-highlight"] {{ display:none !important;height:0 !important;background:transparent !important; }}
-.stTabs [data-baseweb="tab-panel"] {{ padding-top:18px !important; }}
-.kpi-wrap {{
-    background:#FFFFFF;border-radius:16px;padding:18px 20px 16px;
-    box-shadow:0 1px 4px rgba(15,20,50,0.06),0 4px 16px rgba(15,20,50,0.04);
-    position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;margin-bottom:4px;
-}}
-.kpi-wrap:hover {{ transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,20,50,0.10); }}
-.kpi-wrap::after {{
-    content:'';position:absolute;top:0;left:0;right:0;height:3px;
-    background:linear-gradient(90deg,{C_PURPLE} 0%,rgba(102,110,255,0.3) 100%);
-    border-radius:16px 16px 0 0;
-}}
-.kpi-wrap.green::after  {{ background:linear-gradient(90deg,{C_GREEN},rgba(48,191,166,0.3)); }}
-.kpi-wrap.amber::after  {{ background:linear-gradient(90deg,#F59E0B,rgba(245,158,11,0.3)); }}
-.kpi-wrap.red::after    {{ background:linear-gradient(90deg,#DC2626,rgba(220,38,38,0.3)); }}
-.kpi-wrap.violet::after {{ background:linear-gradient(90deg,#818CF8,rgba(129,140,248,0.3)); }}
-.kpi-wrap.gray::after   {{ background:linear-gradient(90deg,#64748B,rgba(100,116,139,0.3)); }}
-.kpi-wrap.teal::after   {{ background:linear-gradient(90deg,{C_GREEN},rgba(48,191,166,0.3)); }}
-.kpi-lbl {{ font-size:10px;font-weight:700;color:#8899B0;text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px;display:block; }}
-.kpi-val {{ font-size:30px;font-weight:900;color:#0D1321;line-height:1;letter-spacing:-.03em;display:block; }}
-.kpi-sub {{ font-size:11px;color:#AAB4C4;margin-top:4px;font-weight:400;display:block; }}
-.kpi-dlt {{ font-size:11px;font-weight:700;margin-top:4px;display:block; }}
+
+/* ── KPI cards ── */
+.kpi-wrap {{ background:#fff; border-radius:14px; padding:16px 18px;
+             box-shadow:0 2px 8px rgba(0,0,0,.06);
+             border-top:3px solid {C_PURPLE}; }}
+.kpi-wrap.green  {{ border-top-color:{C_GREEN}; }}
+.kpi-wrap.amber  {{ border-top-color:#F59E0B; }}
+.kpi-wrap.red    {{ border-top-color:#991B1B; }}
+.kpi-wrap.violet {{ border-top-color:#A78BFA; }}
+.kpi-wrap.gray   {{ border-top-color:#6B7280; }}
+.kpi-lbl  {{ font-size:10px; font-weight:700; color:#6B7280;
+             text-transform:uppercase; letter-spacing:.07em; margin-bottom:4px; }}
+.kpi-val  {{ font-size:28px; font-weight:800; color:{C_DARK}; line-height:1; }}
+.kpi-sub  {{ font-size:10px; color:#9CA3AF; margin-top:3px; }}
+.kpi-dlt  {{ font-size:11px; font-weight:700; margin-top:2px; }}
 .kpi-dlt.up {{ color:{C_GREEN}; }}
-.kpi-dlt.dn {{ color:#DC2626; }}
+.kpi-dlt.dn {{ color:#EF4444; }}
+
+/* ── section header ── */
 .sec-head {{
-    font-size:15px;font-weight:800;color:#0D1321;
-    display:flex;align-items:center;gap:10px;
-    border-bottom:2px solid {C_PURPLE};padding-bottom:8px;
-    margin:28px 0 16px;letter-spacing:-.01em;
+    font-size:15px; font-weight:800; color:{C_DARK};
+    display:flex; align-items:center; gap:8px;
+    border-bottom:2px solid {C_PURPLE}; padding-bottom:6px;
+    margin:24px 0 14px;
 }}
 .sec-head .pill {{
-    background:linear-gradient(135deg,{C_PURPLE},#818CF8);
-    color:#fff;font-size:10px;padding:3px 10px;
-    border-radius:999px;font-weight:700;letter-spacing:.05em;
-    box-shadow:0 2px 8px rgba(102,110,255,0.30);
+    background:{C_PURPLE}; color:#fff; font-size:10px;
+    padding:2px 8px; border-radius:999px; font-weight:700;
 }}
+
+/* ── top performer cards ── */
 .tp-card {{
-    background:#FFFFFF;border-radius:14px;padding:16px 18px;
-    box-shadow:0 1px 4px rgba(15,20,50,0.06),0 4px 14px rgba(15,20,50,0.04);
-    border-left:4px solid {C_PURPLE};margin-bottom:12px;
-    transition:transform .18s,box-shadow .18s;
+    background:#fff; border-radius:12px; padding:14px 16px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    border-left:4px solid {C_PURPLE};
+    margin-bottom:10px;
 }}
-.tp-card:hover {{ transform:translateY(-2px);box-shadow:0 6px 20px rgba(15,20,50,0.10); }}
 .tp-card.green {{ border-left-color:{C_GREEN}; }}
 .tp-card.amber {{ border-left-color:#F59E0B; }}
-.tp-name {{ font-size:13px;font-weight:700;color:#0D1321;letter-spacing:-.01em; }}
-.tp-role {{ font-size:11px;color:#7A8BAD;margin-top:2px; }}
-.tp-meta {{ font-size:11px;color:#374151;margin-top:8px;line-height:1.7; }}
-.tp-badge {{ display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:8px;letter-spacing:.03em; }}
-.g9box {{
-    border-radius:14px;padding:14px 15px 12px;background:#fff;
-    border:1.5px solid #E4E6EF;
-    box-shadow:0 1px 4px rgba(15,20,50,0.05),0 4px 14px rgba(15,20,50,0.04);
-    display:flex;flex-direction:column;min-height:178px;
-    transition:transform .18s,box-shadow .18s;
+.tp-name  {{ font-size:13px; font-weight:700; color:{C_DARK}; }}
+.tp-role  {{ font-size:11px; color:#6B7280; margin-top:1px; }}
+.tp-meta  {{ font-size:11px; color:#374151; margin-top:6px; line-height:1.6; }}
+.tp-badge {{
+    display:inline-block; font-size:10px; font-weight:700;
+    padding:2px 9px; border-radius:999px; margin-top:5px;
 }}
-.g9box:hover {{ transform:translateY(-3px);box-shadow:0 8px 24px rgba(15,20,50,0.11); }}
-.g9box-head {{ display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px; }}
-.g9box-code {{ font-size:10px;font-weight:800;letter-spacing:.11em;opacity:.55;line-height:1; }}
-.g9box-title {{ font-size:12px;font-weight:800;line-height:1.25;margin-top:3px;color:#0D1321;letter-spacing:-.01em; }}
-.g9box-cnt {{ font-size:30px;font-weight:900;line-height:1;text-align:right;letter-spacing:-.04em; }}
-.g9box-cnt-lbl {{ font-size:9px;font-weight:600;text-align:right;opacity:.50;text-transform:uppercase;letter-spacing:.07em; }}
-.g9box-div {{ height:1px;background:rgba(0,0,0,.05);margin:8px 0 7px; }}
-.g9box-names {{ flex:1;overflow-y:auto;max-height:120px;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.10) transparent; }}
-.g9box-names::-webkit-scrollbar {{ width:3px; }}
-.g9box-names::-webkit-scrollbar-thumb {{ background:rgba(0,0,0,.10);border-radius:3px; }}
-.g9name {{ font-size:10.5px;line-height:1.65;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 2px; }}
-.g9-empty {{ font-size:10px;color:#B0BAC8;font-style:italic;text-align:center;margin-top:22px; }}
-.perf-lbl {{ font-size:10px;font-weight:700;color:#8899B0;text-align:center;text-transform:uppercase;letter-spacing:.08em; }}
-.grid-xaxis-title {{ font-size:10px;font-weight:700;color:#8899B0;text-align:center;margin-top:4px;letter-spacing:.07em;text-transform:uppercase; }}
-.grid-yaxis-title {{ font-size:10px;font-weight:700;color:#8899B0;text-align:center;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px; }}
-.badge {{ display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.03em; }}
+
+/* ── 9-box cell ── */
+.box9 {{
+    border-radius:10px; padding:10px 12px;
+    display:flex; flex-direction:column;
+    font-family:inherit;
+}}
+.box9-code  {{ font-size:11px; font-weight:800; opacity:.7; }}
+.box9-label {{ font-size:12px; font-weight:700; margin:2px 0; }}
+.box9-cnt   {{ font-size:26px; font-weight:800; line-height:1; }}
+.box9-names {{ font-size:9.5px; line-height:1.55; margin-top:5px;
+               max-height:90px; overflow:hidden; }}
+
+/* ── pill badge ── */
+.badge {{
+    display:inline-block; font-size:10px; font-weight:700;
+    padding:2px 9px; border-radius:999px;
+}}
+
+/* ── Tab bar: single clean purple underline ── */
+.stTabs [data-baseweb="tab-list"] {{
+    gap: 0;
+    border-bottom: 1px solid #E5E7EB;
+}}
+.stTabs [data-baseweb="tab-list"] button {{
+    border: none !important;
+    border-bottom: 3px solid transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding-bottom: 10px;
+    margin-bottom: -1px;
+}}
+.stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {{
+    border-bottom: 3px solid #666EFF !important;
+    color: #666EFF !important;
+    font-weight: 700 !important;
+    background: transparent !important;
+}}
+.stTabs [data-baseweb="tab-list"] button[aria-selected="true"] p {{
+    color: #666EFF !important;
+}}
+.stTabs [data-baseweb="tab-list"] button:not([aria-selected="true"]) {{
+    color: #6B7280 !important;
+}}
+.stTabs [data-baseweb="tab-list"] button:not([aria-selected="true"]) p {{
+    color: #6B7280 !important;
+}}
+/* Hide the BaseWeb animated highlight bar (prevents double underline / red line) */
+[data-baseweb="tab-highlight"] {{
+    display: none !important;
+    background: transparent !important;
+    height: 0 !important;
+}}
+
+
+
+
+/* ── Final reference radio style: visible circles, no text background ── */
 div[role="radiogroup"] {{
-    display:flex !important;align-items:center !important;
-    gap:28px !important;flex-wrap:wrap;margin:8px 0 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 26px !important;
 }}
+
 div[role="radiogroup"] label {{
-    display:inline-flex !important;align-items:center !important;gap:10px !important;
-    background:transparent !important;border:none !important;box-shadow:none !important;
-    padding:0 !important;margin:0 !important;cursor:pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer !important;
 }}
-div[role="radiogroup"] label * {{ background:transparent !important;box-shadow:none !important; }}
-div[role="radiogroup"] label p,div[role="radiogroup"] label span {{
-    color:#4A5568 !important;font-weight:500 !important;font-size:13px !important;
-    background:transparent !important;margin:0 !important;
+
+div[role="radiogroup"] label * {{
+    background: transparent !important;
+    box-shadow: none !important;
 }}
+
+div[role="radiogroup"] label p,
+div[role="radiogroup"] label span {{
+    color: #2B2B2B !important;
+    font-weight: 400 !important;
+    background: transparent !important;
+    margin: 0 !important;
+}}
+
 div[role="radiogroup"] label:has(input[type="radio"]:checked) p,
 div[role="radiogroup"] label:has(input[type="radio"]:checked) span {{
-    color:{C_PURPLE} !important;font-weight:700 !important;background:transparent !important;
+    color: #666EFF !important;
+    font-weight: 700 !important;
+    background: transparent !important;
 }}
+
 div[role="radiogroup"] input[type="radio"] {{
-    appearance:auto !important;-webkit-appearance:radio !important;
-    accent-color:{C_PURPLE} !important;
-    width:18px !important;height:18px !important;
-    min-width:18px !important;min-height:18px !important;
-    margin:0 !important;opacity:1 !important;visibility:visible !important;cursor:pointer !important;
+    appearance: auto !important;
+    -webkit-appearance: radio !important;
+    accent-color: #666EFF !important;
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    position: relative !important;
+    visibility: visible !important;
+    cursor: pointer !important;
 }}
-div[role="radiogroup"] [data-baseweb="radio"],
+
+/* BaseWeb wrapper cleanup: do not color or cover the text */
+div[role="radiogroup"] [data-baseweb="radio"] {{
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}}
+
 div[role="radiogroup"] [data-baseweb="radio"] div {{
-    background:transparent !important;border:none !important;box-shadow:none !important;
+    background: transparent !important;
+    box-shadow: none !important;
 }}
+
 div[role="radiogroup"] label:hover p,
-div[role="radiogroup"] label:hover span {{ color:{C_PURPLE} !important; }}
-.stDownloadButton button {{
-    background:linear-gradient(135deg,{C_PURPLE},#818CF8) !important;
-    color:#fff !important;border:none !important;border-radius:10px !important;
-    font-weight:700 !important;padding:8px 22px !important;font-size:13px !important;
-    box-shadow:0 4px 14px rgba(102,110,255,0.28) !important;transition:opacity .18s !important;
+div[role="radiogroup"] label:hover span {{
+    color: #666EFF !important;
 }}
-.stDownloadButton button:hover {{ opacity:.85 !important; }}
-.stCaption {{ color:#8899B0 !important;font-size:11px !important; }}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -396,20 +434,14 @@ logo_b64 = img_b64("logo.png")
 with st.sidebar:
     if logo_b64:
         st.markdown(
-            f'<div style="text-align:center;padding:20px 0 0">'
+            f'<div style="text-align:center;padding:18px 0 10px">'
             f'<img src="data:image/png;base64,{logo_b64}" '
-            f'style="max-width:160px;width:100%;border-radius:6px;'
-            f'filter:brightness(1.05);"></div>'
-            f'<div style="text-align:center;margin:8px 0 10px;'
-            f'font-size:9px;font-weight:700;color:#2A3B52;'
-            f'letter-spacing:.12em;text-transform:uppercase;">HR Analytics</div>',
+            f'style="max-width:170px;width:100%;border-radius:6px"></div>',
             unsafe_allow_html=True,
         )
     st.markdown(
-        '<div style="text-align:center;font-size:9px;color:#2A3B52;'
-        'margin-bottom:10px;letter-spacing:.10em;font-weight:700;'
-        'text-transform:uppercase;border-top:1px solid rgba(102,110,255,0.12);'
-        'padding-top:8px;">Powered by MBC Media Solutions</div>',
+        f'<div style="text-align:center;font-size:11px;color:#64748B;'
+        f'margin-bottom:12px">Talent 9-Grid Dashboard</div>',
         unsafe_allow_html=True,
     )
     st.markdown("---")
@@ -430,11 +462,7 @@ with st.sidebar:
     sel_name  = st.selectbox("👤  Employee Name", ["All"] + yr_names, index=0)
 
     st.markdown("---")
-    st.markdown(
-        '<div style="font-size:9px;color:#1E2D42;text-align:center;'
-        'padding:10px 8px 4px;opacity:0.7;line-height:1.5;">'  
-        'Source: 9Grid_Final.xlsx<br>Evalutaion 23 · 24 · 25</div>',
-        unsafe_allow_html=True)
+    st.caption("Source: 9Grid_Final.xlsx · Evalutaion sheets 23 / 24 / 25")
 
 
 # ── FILTER HELPERS ────────────────────────────────────────────────────────────
@@ -467,69 +495,35 @@ logo_img = (
     if logo_b64 else ""
 )
 yr_badge = (
-    f'<span style="background:linear-gradient(135deg,{C_PURPLE},#818CF8);'
-    f'color:#fff;border-radius:999px;padding:4px 14px;'
-    f'font-size:11px;font-weight:700;letter-spacing:.05em;'
-    f'box-shadow:0 2px 10px rgba(102,110,255,0.38);">{sel_year}</span>'
+    f'<span style="background:{C_PURPLE};color:#fff;border-radius:999px;'
+    f'padding:3px 14px;font-size:12px;font-weight:700">{sel_year}</span>'
 )
 loc_txt  = sel_loc  if sel_loc  != "All" else "All Locations"
 dept_txt = sel_dept if sel_dept != "All" else "All Departments"
 name_txt = f" · {sel_name}" if sel_name != "All" else ""
 
-st.markdown(f"""
-<div style="
-    background: linear-gradient(135deg, #0B1120 0%, #1A1040 55%, #0D1B2A 100%);
-    border-radius: 18px;
-    padding: 22px 30px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    box-shadow: 0 8px 32px rgba(11,17,32,0.30);
-    border: 1px solid rgba(102,110,255,0.14);
-    position: relative;
-    overflow: hidden;
-">
-<div style="position:absolute;top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg,{C_PURPLE} 0%,{C_GREEN} 50%,{C_PURPLE} 100%);
-    opacity:.75;"></div>
-<div style="flex-shrink:0;">{logo_img}</div>
-<div style="flex:1;min-width:0;">
-    <div style="font-size:21px;font-weight:900;color:#EEF2FF;
-        letter-spacing:-.025em;margin-bottom:5px;line-height:1.15;">
-        Talent 9-Grid Dashboard
-    </div>
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        {yr_badge}
-        <span style="color:#2A3B55;font-size:13px;">|</span>
-        <span style="font-size:12px;color:#7A90A8;">{dept_txt} · {loc_txt}{name_txt}</span>
-        <span style="color:#2A3B55;font-size:13px;">|</span>
-        <span style="font-size:12px;font-weight:700;color:{C_GREEN};">
-            {len(gdf)} employees evaluated
-        </span>
-    </div>
-</div>
-<div style="text-align:right;flex-shrink:0;padding-left:16px;
-    border-left:1px solid rgba(102,110,255,0.15);">
-    <div style="font-size:9px;color:#4A6080;text-transform:uppercase;
-        letter-spacing:.10em;margin-bottom:3px;font-weight:700;">Analytics Year</div>
-    <div style="font-size:32px;font-weight:900;
-        background:linear-gradient(135deg,{C_PURPLE},{C_GREEN});
-        -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-        line-height:1;letter-spacing:-.04em;">{sel_year}</div>
-</div>
-</div>
-""", unsafe_allow_html=True)
+st.markdown(
+    f'<div style="background:linear-gradient(135deg,{C_SIDEBAR} 0%,#2D2B55 100%);'
+    f'border-radius:16px;padding:22px 28px;margin-bottom:20px;'
+    f'display:flex;align-items:center;gap:18px">'
+    f'<div>{logo_img}</div>'
+    f'<div>'
+    f'<div style="font-size:20px;font-weight:800;color:#F1F5F9;margin-bottom:4px">'
+    f'Talent 9-Grid Dashboard</div>'
+    f'<div style="font-size:12px;color:#94A3B8">'
+    f'{yr_badge} &nbsp;{dept_txt} · {loc_txt}{name_txt}'
+    f' &nbsp;·&nbsp; <b style="color:#30BFA6">{len(gdf)}</b> evaluated employees</div>'
+    f'</div></div>',
+    unsafe_allow_html=True,
+)
 
 
 # ── KPI CARDS ─────────────────────────────────────────────────────────────────
 def kpi(label, val, sub="", cls="", delta="", ddir=""):
-    import re as _re
-    clean = _re.sub(r'[^\x00-\x7F]', '', str(label)).strip()
     d = (f'<div class="kpi-dlt {ddir}">{delta}</div>' if delta else "")
     return (
         f'<div class="kpi-wrap {cls}">'
-        f'<div class="kpi-lbl">{clean}</div>'
+        f'<div class="kpi-lbl">{label}</div>'
         f'<div class="kpi-val">{val}</div>'
         f'<div class="kpi-sub">{sub}</div>'
         f'{d}</div>'
@@ -602,55 +596,69 @@ tab1, tab2, tab3, tab4 = st.tabs([
 # ══════════════════════════════════════════════════════════════════════════════
 with tab1:
 
-    # ── Scoped card-grid styles ──────────────────────────────────────────────
+    # ── Inject card-grid CSS (scoped, injected once per render) ──────────────
     st.markdown("""
     <style>
-    .g9box{border-radius:14px;padding:14px 15px 12px;background:#fff;
-        border:1.5px solid #E4E6EF;
-        box-shadow:0 1px 4px rgba(15,20,50,0.05),0 4px 14px rgba(15,20,50,0.04);
-        display:flex;flex-direction:column;min-height:178px;
-        transition:transform .18s,box-shadow .18s;}
-    .g9box:hover{transform:translateY(-3px);
-        box-shadow:0 8px 24px rgba(15,20,50,0.11);}
+    /* ── axis label strips ── */
+    .grid-axis-top{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+        margin-bottom:6px;padding:0 2px;}
+    .grid-axis-left{display:flex;flex-direction:column;justify-content:space-around;
+        align-items:center;padding:2px 0;writing-mode:vertical-lr;
+        transform:rotate(180deg);height:100%;}
+    .ax-lbl{font-size:11px;font-weight:700;color:#6B7280;text-align:center;
+        text-transform:uppercase;letter-spacing:.06em;}
+    /* ── 3×3 outer wrapper ── */
+    .grid9-wrap{display:grid;grid-template-columns:auto 1fr;gap:0;width:100%;}
+    .grid9-rows{display:flex;flex-direction:column;gap:10px;flex:1;}
+    .grid9-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+    /* ── single box card ── */
+    .g9box{border-radius:14px;padding:14px 14px 10px;background:#fff;
+        border:1.5px solid #E5E7EB;
+        box-shadow:0 2px 10px rgba(0,0,0,.06);
+        display:flex;flex-direction:column;min-height:170px;
+        transition:box-shadow .2s;}
+    .g9box:hover{box-shadow:0 6px 20px rgba(0,0,0,.11);}
+    /* header row inside box */
     .g9box-head{display:flex;justify-content:space-between;
         align-items:flex-start;margin-bottom:6px;}
-    .g9box-code{font-size:10px;font-weight:800;letter-spacing:.11em;
-        opacity:.55;line-height:1;}
-    .g9box-title{font-size:12px;font-weight:800;line-height:1.25;
-        margin-top:3px;color:#0D1321;letter-spacing:-.01em;}
-    .g9box-cnt{font-size:30px;font-weight:900;line-height:1;
-        text-align:right;letter-spacing:-.04em;}
+    .g9box-code{font-size:10px;font-weight:800;letter-spacing:.08em;
+        opacity:.65;line-height:1;}
+    .g9box-title{font-size:12px;font-weight:800;line-height:1.2;
+        margin-top:2px;color:#1E1E2E;}
+    .g9box-cnt{font-size:26px;font-weight:900;line-height:1;
+        text-align:right;}
     .g9box-cnt-lbl{font-size:9px;font-weight:600;text-align:right;
-        opacity:.50;text-transform:uppercase;letter-spacing:.07em;}
-    .g9box-div{height:1px;background:rgba(0,0,0,.05);margin:8px 0 7px;}
+        opacity:.6;text-transform:uppercase;letter-spacing:.05em;}
+    /* divider */
+    .g9box-div{height:1px;background:rgba(0,0,0,.07);margin:8px 0 6px;}
+    /* scrollable name list */
     .g9box-names{flex:1;overflow-y:auto;max-height:120px;
-        scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.10) transparent;}
+        scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent;}
     .g9box-names::-webkit-scrollbar{width:3px;}
-    .g9box-names::-webkit-scrollbar-thumb{background:rgba(0,0,0,.10);border-radius:3px;}
+    .g9box-names::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:3px;}
     .g9name{font-size:10.5px;line-height:1.65;white-space:nowrap;
         overflow:hidden;text-overflow:ellipsis;padding:0 2px;}
-    .g9-empty{font-size:10px;color:#B0BAC8;font-style:italic;
-        text-align:center;margin-top:22px;}
-    .perf-lbl{font-size:10px;font-weight:700;color:#8899B0;text-align:center;
-        text-transform:uppercase;letter-spacing:.08em;}
-    .grid-xaxis-title{font-size:10px;font-weight:700;color:#8899B0;
-        text-align:center;margin-top:4px;letter-spacing:.07em;text-transform:uppercase;}
-    .grid-yaxis-title{font-size:10px;font-weight:700;color:#8899B0;
-        text-align:center;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px;}
+    /* empty state */
+    .g9-empty{font-size:10px;color:#9CA3AF;font-style:italic;text-align:center;
+        margin-top:20px;}
+    /* performance axis bottom */
+    .grid-axis-bot{display:grid;grid-template-columns:auto repeat(3,1fr);
+        gap:10px;margin-top:8px;}
+    .perf-lbl{font-size:11px;font-weight:700;color:#6B7280;text-align:center;
+        text-transform:uppercase;letter-spacing:.06em;}
+    .grid-xaxis-title{font-size:11px;font-weight:700;color:#6B7280;text-align:center;
+        margin-top:4px;letter-spacing:.05em;}
+    .grid-yaxis-title{font-size:11px;font-weight:700;color:#6B7280;text-align:center;
+        letter-spacing:.05em;margin-bottom:8px;}
     </style>
     """, unsafe_allow_html=True)
 
     # ── Section header ────────────────────────────────────────────────────────
     st.markdown(
-        f'''<div class="sec-head">
-            🔲&nbsp;9-Box Talent Matrix
-            <span class="pill">{sel_year}</span>
-            <span style="margin-left:auto;font-size:11px;font-weight:500;color:#8899B0;
-                background:#F0F1FF;border-radius:999px;padding:2px 10px;
-                border:1px solid #C7CAFF;">
-                {len(gdf)} evaluated
-            </span>
-        </div>''',
+        f'<div class="sec-head">🔲 9-Box Talent Matrix'
+        f'<span class="pill">{sel_year}</span>'
+        f'<span style="font-size:11px;font-weight:400;color:#6B7280;margin-left:auto">'
+        f'{len(gdf)} employees evaluated</span></div>',
         unsafe_allow_html=True,
     )
 
@@ -797,23 +805,16 @@ with tab1:
     # ── Legend strip below grid ───────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
     legend_items = "".join(
-        f'<span style="display:inline-flex;align-items:center;gap:6px;'
-        f'padding:5px 11px;border-radius:999px;margin:3px;'
-        f'background:{BOX_STYLE[k]["bg"]};'
-        f'border:1px solid {BOX_STYLE[k]["border"]};'
-        f'font-size:10.5px;font-weight:600;color:{BOX_STYLE[k]["accent"]};'
-        f'white-space:nowrap;letter-spacing:.02em;">'
-        f'<span style="width:7px;height:7px;border-radius:50%;'
-        f'background:{BOX_STYLE[k]["accent"]};display:inline-block;flex-shrink:0;'
-        f'box-shadow:0 0 4px {BOX_STYLE[k]["accent"]}55;"></span>'
-        f'{k}&nbsp;·&nbsp;{GRID_META[k]["label"]}</span>'
+        f'<span style="display:inline-flex;align-items:center;gap:5px;'
+        f'margin-right:14px;font-size:11px;color:#374151">'
+        f'<span style="width:10px;height:10px;border-radius:3px;'
+        f'background:{BOX_STYLE[k]["accent"]};display:inline-block"></span>'
+        f'{k} {GRID_META[k]["label"]}</span>'
         for k in CAT_ORDER
     )
     st.markdown(
-        f'<div style="display:flex;flex-wrap:wrap;gap:0;padding:12px 14px;'
-        f'background:#FFFFFF;border-radius:14px;'
-        f'border:1px solid #E4E6EF;'
-        f'box-shadow:0 2px 8px rgba(15,20,50,0.04);">'
+        f'<div style="display:flex;flex-wrap:wrap;gap:4px;padding:10px 12px;'
+        f'background:#F9FAFB;border-radius:10px;border:1px solid #E5E7EB">'
         f'{legend_items}</div>',
         unsafe_allow_html=True,
     )
@@ -823,11 +824,8 @@ with tab1:
 # ══════════════════════════════════════════════════════════════════════════════
 with tab2:
     st.markdown(
-        f'''<div class="sec-head">🏆&nbsp;Top Performers
-            <span class="pill">{sel_year}</span>
-            <span style="margin-left:auto;font-size:11px;font-weight:500;color:#8899B0;"
-                  >{len(gdf)} evaluated</span>
-        </div>''',
+        f'<div class="sec-head">🏆 Top Performers'
+        f'<span class="pill">{sel_year}</span></div>',
         unsafe_allow_html=True,
     )
 
@@ -840,9 +838,6 @@ with tab2:
     ).reset_index(drop=True)
 
     # Summary stat row
-    st.markdown('<div style="background:#fff;border-radius:14px;padding:16px 20px 12px;'
-        'box-shadow:0 1px 4px rgba(15,20,50,0.06);margin-bottom:16px;'
-        'border:1px solid #E4E6EF;">', unsafe_allow_html=True)
     s1, s2, s3 = st.columns(3)
     with s1:
         n_top = int((top_df["grid_zone"].isin(["3C", "3B"])).sum())
@@ -870,7 +865,6 @@ with tab2:
             unsafe_allow_html=True,
         )
 
-    st.markdown('</div>', unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
     # ── Cards view for top 15 ──────────────────────────────────────────────
@@ -916,7 +910,7 @@ with tab2:
 
     # ── Full sortable table ────────────────────────────────────────────────
     st.markdown(
-        '<div class="sec-head" style="margin-top:0">📋&nbsp;Full Ranked Table</div>',
+        f'<div class="sec-head" style="margin-top:0">Full Ranked Table</div>',
         unsafe_allow_html=True,
     )
     tbl = top_df[[
@@ -938,8 +932,7 @@ with tab2:
 # ══════════════════════════════════════════════════════════════════════════════
 with tab3:
     st.markdown(
-        '<div class="sec-head">📈&nbsp;Year-over-Year Comparison'  
-        '<span class="pill" style="background:linear-gradient(135deg,#30BFA6,#0F766E);">2023 · 2024 · 2025</span></div>',
+        f'<div class="sec-head">📈 Year-over-Year Comparison  2023 · 2024 · 2025</div>',
         unsafe_allow_html=True,
     )
 
@@ -976,17 +969,15 @@ with tab3:
 
     # ── Bell Curve — year selector + overlay ────────────────────────────────
     st.markdown(
-        f'<div class="sec-head">📊&nbsp;Performance Distribution'
-        f'<span class="pill" style="'
-        f'background:linear-gradient(135deg,{C_PURPLE},{C_GREEN});">'
-        f'Bell Curve · {sel_year}</span></div>',
+        f'<div style="font-size:13px;font-weight:700;color:{C_DARK};margin-bottom:12px">' 
+        "Performance Distribution — Bell Curve</div>",
         unsafe_allow_html=True,
     )
 
     # year selector for bell curve (independent of main sidebar year)
     bell_yr_options = ["All Years", "2025", "2024", "2023"]
     bell_sel = st.radio(
-        "Select year view:",
+        "Show bell curve for:",
         bell_yr_options,
         index=0,
         horizontal=True,
@@ -1117,7 +1108,7 @@ with tab3:
             x=zxr, y=zyr,
             mode="lines",
             name="Distribution Guideline",
-            line=dict(color=C_GREEN, width=2.5, dash="longdash"),
+            line=dict(color="#666EFF", width=2.5),
             hoverinfo="skip",
         ))
 
@@ -1125,50 +1116,36 @@ with tab3:
     
 
     fig_bell.update_layout(
-        height=440,
-        plot_bgcolor="#FFFFFF",
-        paper_bgcolor="#FFFFFF",
+        height=420,
+        plot_bgcolor="#FAFBFC",
+        paper_bgcolor=C_WHITE,
         barmode="group",
         xaxis=dict(
             tickvals=zone_centers,
             ticktext=zone_labels,
             showgrid=False,
-            tickfont=dict(size=11, color="#374151", family="Inter, Arial"),
-            title=dict(text="Performance Zone", font=dict(size=12, color="#6B7280",
-                       family="Inter, Arial")),
-            showline=True,
-            linecolor="#E4E6EF",
-            linewidth=1,
+            tickfont=dict(size=10, color="#374151"),
+            title=dict(text="Performance Zone", font=dict(size=11, color="#6B7280")),
         ),
         yaxis=dict(
-            title=dict(text="Headcount", font=dict(size=12, color="#6B7280",
-                       family="Inter, Arial")),
+            title=dict(text="HC", font=dict(size=11, color="#6B7280")),
             showgrid=True,
-            gridcolor="#F0F1F8",
-            gridwidth=1,
+            gridcolor=C_LGRAY,
             zeroline=True,
-            zerolinecolor="#E4E6EF",
-            zerolinewidth=1,
-            tickfont=dict(size=10, color="#8899B0"),
-            showline=False,
+            zerolinecolor=C_LGRAY,
         ),
         legend=dict(
             orientation="h",
-            y=-0.20,
+            y=-0.22,
             x=0.5,
             xanchor="center",
-            font=dict(size=11, family="Inter, Arial"),
-            bgcolor="rgba(255,255,255,0.95)",
-            bordercolor="#E4E6EF",
+            font=dict(size=10),
+            bgcolor="rgba(255,255,255,0.8)",
+            bordercolor=C_LGRAY,
             borderwidth=1,
-            borderpad=6,
         ),
-        margin=dict(l=55, r=24, t=24, b=90),
-        font=dict(family="Inter, Arial", size=11),
-        hoverlabel=dict(
-            bgcolor="#0D1321",
-            font=dict(color="#fff", size=11, family="Inter, Arial"),
-        ),
+        margin=dict(l=50, r=20, t=30, b=90),
+        font=dict(family="Inter, Arial", size=10),
     )
     st.plotly_chart(fig_bell, use_container_width=True)
 
@@ -1179,9 +1156,8 @@ with tab3:
 
     with col_stack:
         st.markdown(
-            '<div style="font-size:13px;font-weight:700;color:#0D1321;'
-            'letter-spacing:-.01em;margin-bottom:8px;">'
-            'Category Distribution by Year</div>',
+            f'<div style="font-size:13px;font-weight:700;color:{C_DARK};margin-bottom:8px">'
+            f'Full Distribution by Category & Year</div>',
             unsafe_allow_html=True,
         )
         fig_st = px.bar(
@@ -1193,58 +1169,46 @@ with tab3:
             labels={"year": "Year", "count": "Employees", "category": "Category"},
         )
         fig_st.update_layout(
-            height=330,
-            plot_bgcolor="#FFFFFF", paper_bgcolor="#FFFFFF",
-            margin=dict(l=44, r=20, t=16, b=50),
-            legend=dict(orientation="h", y=-0.38, font=dict(size=9,
-                        family="Inter, Arial"), borderpad=4),
+            height=320,
+            plot_bgcolor="#FAFBFC", paper_bgcolor=C_WHITE,
+            margin=dict(l=40, r=20, t=10, b=40),
+            legend=dict(orientation="h", y=-0.40, font=dict(size=9)),
             font=dict(family="Inter, Arial", size=10),
-            xaxis=dict(showgrid=False, linecolor="#E4E6EF",
-                       tickfont=dict(size=11, color="#374151")),
-            yaxis=dict(showgrid=True, gridcolor="#F0F1F8", gridwidth=1,
-                       tickfont=dict(size=10, color="#8899B0")),
-            hoverlabel=dict(bgcolor="#0D1321", font=dict(color="#fff", size=11)),
-            bargap=0.25, bargroupgap=0.05,
+            xaxis=dict(showgrid=False),
+            yaxis=dict(showgrid=True, gridcolor=C_LGRAY),
         )
         st.plotly_chart(fig_st, use_container_width=True)
 
     with col_avg:
         st.markdown(
-            '<div style="font-size:13px;font-weight:700;color:#0D1321;'
-            'letter-spacing:-.01em;margin-bottom:8px;">'
-            'Average Score by Year</div>',
+            f'<div style="font-size:13px;font-weight:700;color:{C_DARK};margin-bottom:8px">'
+            f'Average Performance Score by Year</div>',
             unsafe_allow_html=True,
         )
-        bar_clrs = [C_PURPLE, C_GREEN, "#818CF8"]
+        bar_clrs = [C_PURPLE, C_GREEN, "#A78BFA"]
         fig_avg = go.Figure(go.Bar(
             x=trend["year"].astype(str),
             y=trend["avg_score"].round(2),
             marker_color=bar_clrs,
-            marker_line_color="rgba(255,255,255,0.3)",
-            marker_line_width=1,
             text=trend["avg_score"].round(2),
             textposition="outside",
-            textfont=dict(size=12, color="#0D1321", family="Inter, Arial"),
-            width=0.42,
+            textfont=dict(size=11, color=C_DARK),
+            width=0.4,
         ))
         fig_avg.update_layout(
-            height=330,
-            plot_bgcolor="#FFFFFF", paper_bgcolor="#FFFFFF",
-            xaxis=dict(showgrid=False, linecolor="#E4E6EF",
-                       tickfont=dict(size=12, color="#374151", family="Inter, Arial")),
-            yaxis=dict(range=[0, 5.8], showgrid=True, gridcolor="#F0F1F8",
-                       tickfont=dict(size=10, color="#8899B0"),
-                       title=dict(text="Avg Score", font=dict(size=11, color="#8899B0"))),
-            margin=dict(l=50, r=20, t=16, b=40),
-            font=dict(family="Inter, Arial", size=11),
+            height=320,
+            plot_bgcolor="#FAFBFC", paper_bgcolor=C_WHITE,
+            xaxis=dict(showgrid=False),
+            yaxis=dict(range=[0, 5.5], showgrid=True, gridcolor=C_LGRAY),
+            margin=dict(l=40, r=20, t=10, b=40),
+            font=dict(family="Inter, Arial", size=10),
             showlegend=False,
-            hoverlabel=dict(bgcolor="#0D1321", font=dict(color="#fff", size=11)),
         )
         st.plotly_chart(fig_avg, use_container_width=True)
 
     # ── Row 3: Individual movement table ─────────────────────────────────────
     st.markdown(
-        '<div class="sec-head" style="margin-top:4px">🔄&nbsp;Employee Grid Movement — 2023 → 2025</div>',
+        f'<div class="sec-head" style="margin-top:4px">Individual Grid Movement — All Years</div>',
         unsafe_allow_html=True,
     )
     _pm = pd.Series(True, index=df_all.index)
@@ -1291,8 +1255,7 @@ with tab3:
 # ══════════════════════════════════════════════════════════════════════════════
 with tab4:
     st.markdown(
-        '<div class="sec-head">📋&nbsp;Full Employee Register'
-        '<span style="margin-left:auto;font-size:11px;color:#8899B0;">All Years · All Locations</span></div>',
+        f'<div class="sec-head">📋 Full Employee Register</div>',
         unsafe_allow_html=True,
     )
 
@@ -1333,7 +1296,7 @@ with tab4:
 
     st.dataframe(reg.reset_index(drop=True), use_container_width=True, height=560)
     st.download_button(
-        label="⬇️  Export Employee Register (CSV)",
+        label="⬇️  Download CSV",
         data=reg.to_csv(index=False).encode("utf-8"),
         file_name=f"talent_register_{sel_year}.csv",
         mime="text/csv",
@@ -1341,18 +1304,11 @@ with tab4:
 
 
 # ── FOOTER ────────────────────────────────────────────────────────────────────
+st.markdown("---")
 st.markdown(
-    f'''<div style="margin-top:32px;padding:18px 24px;
-        background:linear-gradient(135deg,#0B1120,#111827);
-        border-radius:14px;display:flex;align-items:center;
-        justify-content:space-between;flex-wrap:wrap;gap:8px;">
-        <span style="font-size:11px;color:#4A6080;font-weight:500;">
-            © MBC Media Solutions &nbsp;·&nbsp; Talent 9-Grid Dashboard
-        </span>
-        <span style="font-size:10px;color:#2A3B55;">
-            Source: 9Grid_Final.xlsx &nbsp;·&nbsp; Evalutaion 23 / 24 / 25 &nbsp;·&nbsp;
-            Built with Streamlit &amp; Plotly
-        </span>
-    </div>''',
+    f'<p style="text-align:center;color:#9CA3AF;font-size:10px">'
+    f'MBC Media Solutions · Talent 9-Grid Dashboard · '
+    f'Source: 9Grid_Final.xlsx (Evalutaion 23 / 24 / 25) · '
+    f'Built with Streamlit & Plotly</p>',
     unsafe_allow_html=True,
 )
